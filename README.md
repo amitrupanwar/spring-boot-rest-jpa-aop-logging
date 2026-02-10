@@ -56,6 +56,21 @@ Entities:
 - Product (1) — (M) ProductImage
 - Product (1) — (M) ProductReview
 
+
+## Entity/Table Explanations
+
+Below is a brief explanation of each table/entity in the Product Catalog domain model:
+
+- **ProductCategory**: Represents a category or group for products (e.g., Electronics, Clothing). Contains a unique ID, name, description, and audit fields.
+- **Product**: Represents an item for sale. Linked to a ProductCategory. Contains name, description, price, category reference, and audit fields.
+- **Inventory**: Tracks the available quantity for each product. Uses product_id as its primary key (one-to-one with Product). Contains quantity and audit fields.
+- **Supplier**: Represents a supplier/vendor who provides products. Contains name, contact info, and audit fields.
+- **ProductSupplier**: Join table linking Products and Suppliers (many-to-many). Each row represents a product supplied by a supplier. Includes audit fields.
+- **Tag**: Represents a tag or label for products (e.g., "New", "Sale"). Contains name and audit fields.
+- **ProductTag**: Join table linking Products and Tags (many-to-many). Each row represents a tag assigned to a product. Includes audit fields.
+- **ProductImage**: Stores image URLs for products. Each image is linked to a product. Contains URL and audit fields.
+- **ProductReview**: Stores customer reviews for products. Each review is linked to a product and includes reviewer name, rating, comment, and audit fields.
+
 ### ERD Diagram
 
 ```mermaid
