@@ -47,9 +47,9 @@ src/
 
 Entities:
 - ProductCategory (1) — (M) Product
-- Product (1) — (1) Inventory
-- Product (M) — (M) Supplier
-- Product (M) — (M) Tag
+- Product (1) — (1) Inventory (Inventory uses product_id as its primary key)
+- Product (M) — (M) Supplier (via ProductSupplier join entity)
+- Product (M) — (M) Tag (via ProductTag join entity)
 - Product (1) — (M) ProductImage
 - Product (1) — (M) ProductReview
 
@@ -59,8 +59,8 @@ Entities:
 erDiagram
   ProductCategory ||--o{ Product : contains
   Product ||--|| Inventory : has
-  Product }o--o{ Supplier : supplied_by
-  Product }o--o{ Tag : tagged_with
+  Product }o--o{ ProductSupplier : supplied_by
+  Product }o--o{ ProductTag : tagged_with
   Product ||--|{ ProductImage : has
   Product ||--|{ ProductReview : reviewed_by
   ProductCategory {
@@ -76,14 +76,25 @@ erDiagram
     int category_id
   }
   Inventory {
-    int id
-    int product_id
+    int product_id PK
     int quantity
+  }
+  ProductSupplier {
+    int product_id PK, FK
+    int supplier_id PK, FK
+    datetime created_at
+    datetime updated_at
   }
   Supplier {
     int id
     string name
     string contact
+  }
+  ProductTag {
+    int product_id PK, FK
+    int tag_id PK, FK
+    datetime created_at
+    datetime updated_at
   }
   Tag {
     int id
