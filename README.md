@@ -39,9 +39,10 @@ src/
 - Build REST APIs with Spring Web
 - Work with JPA/Hibernate ORM
 - Implement Spring AOP patterns
-- Master logging best practices
+- Master logging and auditing best practices (automatic created/updated by and date fields on all entities)
 - Demonstrate all major JPA relationships (One-to-Many, Many-to-One, One-to-One, Many-to-Many)
 - Design a Product Catalog domain model (see ERD below)
+- All entities and join tables include audit fields: createdAt, createdBy, updatedAt, updatedBy
 
 ## Planned Domain Model (ERD)
 
@@ -71,6 +72,10 @@ erDiagram
     int id
     string name
     string description
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   Product {
     int id
@@ -78,36 +83,60 @@ erDiagram
     string description
     decimal price
     int category_id
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   Inventory {
     int product_id PK
     int quantity
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   ProductSupplier {
     int product_id PK, FK
     int supplier_id PK, FK
     datetime created_at
+    string created_by
     datetime updated_at
+    string updated_by
   }
   Supplier {
     int id
     string name
     string contact
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   ProductTag {
     int product_id PK, FK
     int tag_id PK, FK
     datetime created_at
+    string created_by
     datetime updated_at
+    string updated_by
   }
   Tag {
     int id
     string name
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   ProductImage {
     int id
     int product_id
     string url
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
   ProductReview {
     int id
@@ -115,5 +144,9 @@ erDiagram
     string reviewer
     int rating
     string comment
+    datetime created_at
+    string created_by
+    datetime updated_at
+    string updated_by
   }
 ```

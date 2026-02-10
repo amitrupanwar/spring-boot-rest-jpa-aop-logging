@@ -1,5 +1,6 @@
 package com.amit.practice.model;
 
+import com.amit.practice.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Set;
@@ -9,7 +10,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Supplier {
+public class Supplier extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

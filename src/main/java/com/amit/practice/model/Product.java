@@ -1,5 +1,6 @@
 package com.amit.practice.model;
 
+import com.amit.practice.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
@@ -10,7 +11,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Product {
+public class Product extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

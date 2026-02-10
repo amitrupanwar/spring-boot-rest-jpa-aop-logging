@@ -1,5 +1,6 @@
 package com.amit.practice.model;
 
+import com.amit.practice.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,7 +9,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductReview {
+public class ProductReview extends Auditable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

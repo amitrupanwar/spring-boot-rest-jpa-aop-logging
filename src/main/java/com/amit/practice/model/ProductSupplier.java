@@ -1,10 +1,8 @@
 package com.amit.practice.model;
 
+import com.amit.practice.audit.Auditable;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import java.time.Instant;
 
 @Entity
 @Data
@@ -12,7 +10,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @Table(name = "product_supplier")
-public class ProductSupplier {
+public class ProductSupplier extends Auditable {
     @EmbeddedId
     private ProductSupplierId id;
 
@@ -25,11 +23,4 @@ public class ProductSupplier {
     @MapsId("supplierId")
     @JoinColumn(name = "supplier_id")
     private Supplier supplier;
-
-    @CreatedDate
-    @Column(updatable = false)
-    private Instant createdAt;
-
-    @LastModifiedDate
-    private Instant updatedAt;
 }
