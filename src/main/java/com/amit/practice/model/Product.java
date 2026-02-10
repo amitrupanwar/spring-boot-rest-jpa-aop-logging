@@ -28,23 +28,13 @@ public class Product {
     @OneToOne(mappedBy = "product", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Inventory inventory;
 
-    // Many-to-Many: Supplier
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "product_supplier",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "supplier_id")
-    )
-    private Set<Supplier> suppliers;
+    // One-to-Many: ProductSupplier
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductSupplier> productSuppliers;
 
-    // Many-to-Many: Tag
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "product_tag",
-        joinColumns = @JoinColumn(name = "product_id"),
-        inverseJoinColumns = @JoinColumn(name = "tag_id")
-    )
-    private Set<Tag> tags;
+    // One-to-Many: ProductTag
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductTag> productTags;
 
     // One-to-Many: ProductImage
     @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)

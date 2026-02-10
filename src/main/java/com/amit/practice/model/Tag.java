@@ -16,7 +16,7 @@ public class Tag {
 
     private String name;
 
-    // Many-to-Many: Product
-    @ManyToMany(mappedBy = "tags")
-    private Set<Product> products;
+    // One-to-Many: ProductTag
+    @OneToMany(mappedBy = "tag", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductTag> productTags;
 }

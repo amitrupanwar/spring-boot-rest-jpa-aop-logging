@@ -17,7 +17,7 @@ public class Supplier {
     private String name;
     private String contact;
 
-    // Many-to-Many: Product
-    @ManyToMany(mappedBy = "suppliers")
-    private Set<Product> products;
+    // One-to-Many: ProductSupplier
+    @OneToMany(mappedBy = "supplier", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ProductSupplier> productSuppliers;
 }
